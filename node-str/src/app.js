@@ -9,30 +9,16 @@ const router = express.Router();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
-const route = router.get('/', (req, res, next) => {
-    res.status(200).send({
-        title: "node store API",
-        version: "0.0.2"
-    });
-});
+//Carrega as Rotas
+const index = require('./routes/index-route');
+const product = require('./routes/product-route');
 
-const create = router.post('/', (req, res, next) => {
-    res.status(201).send(req.body);
-});
 
-const put = router.put('/:id', (req, res, next) => {
-    const id = req.params.id;
-    res.status(201).send({ id: id, item: req.body });
-});
 
-const del = router.delete('/', (req, res, next) => {
-    res.status(200).send(req.body);
-});
-
-app.use('/', route);
-app.use('/products', create);
-app.use('/products', put);
-app.use('/products', del);
+app.use('/', index);
+app.use('/product-route', product);
+app.use('/product-route', product);
+app.use('/product-route', product);
 
 module.exports = app;
 
